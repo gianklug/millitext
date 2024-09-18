@@ -1,6 +1,6 @@
-<main class="container text-center text-gray-100 pt-10 w-full max-w-xl mx-auto">
+<main class="container text-center text-gray-100 p-8 md:p-4 pt-10 w-full max-w-xl mx-auto">
   <div class="row mb-4">
-    <h1 class="text-3xl font-bold mb-6">militext</h1>
+    <h1 class="text-3xl font-bold mb-6">millitext</h1>
     <h2 class="text-xl mb-2 font-bold">What's this?</h2>
     <p>This page allows you to generate images of text at subpixel scale.</p>
     <p>
@@ -8,14 +8,19 @@
         href="http://www.msarnoff.org/millitext/">http://www.msarnoff.org/millitext/</a>.
     </p>
   </div>
-  <div class="row mb-4">
-    <h1 class="text-2xl font-bold text-center mb-6">Generate Image</h1>
+  <div class="row mb-4 mt-12">
+    <h1 class="text-xl font-bold text-center mb-6">Generate Image</h1>
 
-    <div class="flex flex-col space-y-4">
-      <div class="flex justify-between items-center">
-        <label for="letterSpacing" class="font-semibold">Letter Spacing (px)</label>
-        <input [(ngModel)]="spaceX" (input)="renderText()" type="number" id="letterSpacing" name="letterSpacing" min="0" max="3" value="1"
-          class="w-20 bg-gray-200 text-black p-2 rounded">
+    <div class="flex flex-col space-y-4 text-left md:px-20 sm:px-0">
+      <div class="justify-between flex">
+        <label for="text" class="font-semibold me-5">Text</label>
+        <input type="text" id="text" name="text" class="bg-gray-200 text-black p-2 rounded uppercase"
+          pattern="[A-Z0-9]*" placeholder="ENTER TEXT" [(ngModel)]="input" (input)="renderText()">
+      </div>
+      <div class="justify-between flex">
+        <label for="letterSpacing" class="font-semibold me-5">Letter Spacing</label>
+        <input [(ngModel)]="spaceX" (input)="renderText()" type="number" id="letterSpacing" name="letterSpacing" min="0"
+          max="3" value="1" class="w-20 bg-gray-200 text-black p-2 rounded">
       </div>
       <!--
       <div class="flex justify-between items-center">
@@ -30,28 +35,31 @@
           class="w-20 bg-gray-200 text-black p-2 rounded">
       </div>
       -->
-      <div>
-        <label for="text" class="block font-semibold mb-2">Text</label>
-        <input type="text" id="text" name="text" class="w-full bg-gray-200 text-black p-2 rounded uppercase"
-          pattern="[A-Z0-9]*" placeholder="ENTER TEXT" [(ngModel)]="input" (input)="renderText()">
-      </div>
 
-      <div class="text-center">
-        <button (click)="generateImage()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Download Image</button>
-      </div>
     </div>
   </div>
-  <div class="row mb-4">
-    <h1 class="text-2xl font-bold text-center mb-6">Preview</h1>
+  <div class="row mb-4 mt-12">
+    <h1 class="text-xl font-bold text-center mb-6">Preview</h1>
     <div class="bg-black h-16 overflow-x-auto whitespace-nowrap">
       <div class="h-2" *ngFor="let row of screen">
         <div class="inline-block h-2 w-3 p-0 m-0" *ngFor="let pixel of row">
-              <div class="inline-block h-1 w-1 rounded"   [style.background-color]="pixel.R ? 'red' : '#111'"></div>
-              <div class="inline-block h-1 w-1 rounded"  [style.background-color]="pixel.G ? 'green' : '#111'"></div>
-              <div class="inline-block h-1 w-1 rounded"  [style.background-color]="pixel.B ? 'blue' : '#111'"></div>
+          <div class="inline-block h-1 w-1 rounded" [style.background-color]="pixel.R ? 'red' : '#111'"></div>
+          <div class="inline-block h-1 w-1 rounded" [style.background-color]="pixel.G ? 'green' : '#111'"></div>
+          <div class="inline-block h-1 w-1 rounded" [style.background-color]="pixel.B ? 'blue' : '#111'"></div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="text-center">
+    <button (click)="generateImage()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">Download
+      Image</button>
+  </div>
+  <div class="row mb-4 mt-12">
+    <h1 class="text-xl font-bold text-center mb-2">Contribute</h1>
+    <p>
+      This project is open source and available on <a class="text-blue-400"
+        href="https://github.com/gianklug/millitext">GitHub</a>.
+    </p>
   </div>
 
 

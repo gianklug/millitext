@@ -29,7 +29,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/favicon.png"
             ],
             "styles": [
               "src/styles.scss"
