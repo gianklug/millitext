@@ -1,6 +1,6 @@
-# Millitext
+# millitext
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+Subpixel text image generation web frontend based on [http://www.msarnoff.org/millitext/](http://www.msarnoff.org/millitext/)
 
 ## Development server
 
