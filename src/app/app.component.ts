@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -9,9 +10,12 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
-  ) { this.renderText() }
+  ) {}
+  ngOnInit() {
+    this.renderText();
+  }
   title = 'millitext';
   input = 'HELLO WORLD';
   spaceX = 1;
@@ -854,6 +858,7 @@ export class AppComponent {
       newScreen = [...newScreen, row]
     }
     this.screen = newScreen
+    this.generateImage()
   }
 
   generateImage() {
@@ -876,6 +881,19 @@ export class AppComponent {
         ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
       }
     }
+    const canvasContainer = document.getElementById('canvas');
+    if (!canvasContainer) {
+      console.error('Failed to get canvas container');
+      return
+    }
+    canvasContainer.childNodes.forEach((child) => {
+      canvasContainer.removeChild(child);
+    });
+    canvasContainer.appendChild(canvas);
+
+  }
+  downloadImage() {
+    const canvas = document.getElementsByTagName('canvas')[0];
 
     const imgDataUrl = canvas.toDataURL('image/png');
 
